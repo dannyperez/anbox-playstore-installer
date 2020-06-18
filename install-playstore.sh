@@ -129,7 +129,8 @@ if [ ! -d "$COMBINEDDIR" ]; then
 		$SUDO snap set anbox rootfs-overlay.enable=true
 		$SUDO snap restart anbox.container-manager
 	else
-		$SUDO cat >/etc/systemd/system/anbox-container-manager.service.d/override.conf<<EOF
+		$SUDO mkdir /lib/systemd/system/anbox-container-manager.service.d/
+		$SUDO cat >/lib/systemd/system/anbox-container-manager.service.d/override.conf<<EOF
 [Service]
 ExecStart=
 ExecStart=/usr/bin/anbox container-manager --daemon --privileged --data-path=/var/lib/anbox --use-rootfs-overlay
